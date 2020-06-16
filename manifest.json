@@ -1,0 +1,11 @@
+{
+  "name": "rem to px converter",
+  "version": "1.0",
+  "description": "Convert between rem and pixel!",
+  "permissions": ["storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "manifest_version": 2
+}
