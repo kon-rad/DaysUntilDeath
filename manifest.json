@@ -1,7 +1,7 @@
 {
-  "name": "rem to px converter",
+  "name": "Days Until Death",
   "version": "1.0",
-  "description": "Convert between rem and pixel!",
+  "description": "Don't waste a day! Be reminded that each day is precious!",
   "permissions": ["storage"],
   "background": {
     "scripts": ["background.js"],
