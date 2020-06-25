@@ -1,15 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
+      :root {
+        /* CSS */
+        --black-coral: hsla(210, 29%, 40%, 1);
+        --blue-yonder: hsla(215, 43%, 60%, 1);
+        --beau-blue: hsla(208, 19%, 92%, 1);
+        --ghost-white: hsla(240, 3%, 100%, 1);
+        --orange-red-crayola: rgba(254, 95, 85, 1);
+      }
+      .container {
+        height: 300px;
+        width: 400px;
+        padding: 20px;
+        background-color: var(--ghost-white);
+        font-family: 'Quicksand', sans-serif;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        border-radius: 6px;
+        border: solid 1px var(--blue-yonder);
+      }
+      .title {
+        text-transform: underline;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 25px;
+        text-align: center;
+        color: var(--black-coral);
+      }
+      .inputContainer {
+        flex-direction: row;
+        display: flex;
+      }
+      .dobInput {
+        width: 100px;
+        padding: 0px 10px;
+        height: 40px;
+        border-radius: 6px;
+        border: solid 1px var(--blue-yonder);
+        color: var(--blue-yonder);
+        font-family: 'Quicksand', sans-serif;
+      }
+      .dobLabel {
+        font-size: 14px;
+      }
+      .dobSubmit {
+        background-color: var(--beau-blue);
+        color: var(--orange-red-crayola);
+        border: solid 1px var(--blue-yonder);
+        border-radius: 6px;
+        height: 42px;
+        font-size: 16px;
+        margin-top: 18px;
+        margin-left: 10px;
+        font-family: 'Quicksand', sans-serif;
+      }
+      .labelContainer {
+        display: flex;
+        flex-direction: column;
       }
     </style>
   </head>
   <body>
-    <button id="changeColor"></button>
+    <div class="container">
+        <h1 class="title">Days Left to Live</h1>
+        <div class="inputContainer">
+          <div class="labelContainer">
+            <label class="dobLabel" for="dob">date of birth:</label>
+            <input type="text" name="dob" class="dobInput" placeholder="mm/dd/yyyy" />
+          </div>
+          <button id="dobSubmit" class="dobSubmit">Show</button>
+        </div>
+    </div>
   </body>
 </html>
