@@ -30,7 +30,7 @@
         text-align: center;
         color: var(--black-coral);
       }
-      .inputContainer {
+      .bodyContainer {
         flex-direction: row;
         display: flex;
       }
@@ -57,6 +57,9 @@
         margin-left: 10px;
         font-family: 'Quicksand', sans-serif;
       }
+      .dobSubmit:hover {
+        cursor: pointer;
+      }
       .labelContainer {
         display: flex;
         flex-direction: column;
@@ -66,7 +69,7 @@
   <body>
     <div class="container">
         <h1 class="title">Days Left to Live</h1>
-        <div class="inputContainer">
+        <div class="bodyContainer">
           <div class="labelContainer">
             <label class="dobLabel" for="dob">date of birth:</label>
             <input type="text" name="dob" class="dobInput" placeholder="mm/dd/yyyy" />
@@ -74,5 +77,6 @@
           <button id="dobSubmit" class="dobSubmit">Show</button>
         </div>
     </div>
+    <script src="popup.js"></script>
   </body>
 </html>
