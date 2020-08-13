@@ -1,6 +1,5 @@
 'use strict';
 
-
 const getElemByID = id => document.getElementById(id);
 
 const button = getElemByID('dobSubmit');
