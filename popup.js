@@ -4,6 +4,10 @@ const getElemByID = id => document.getElementById(id);
 
 const button = getElemByID('dobSubmit');
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 button.addEventListener('click', event => {
   const CONTAINER = getElemByID('bodyContainer');
   const INPUT = getElemByID('dobInput');
@@ -18,9 +22,9 @@ button.addEventListener('click', event => {
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   const dobDate = new Date(dobArrInt[2], dobArrInt[0], dobArrInt[1]);
   const deathDate = new Date(dobArrInt[2] + 85, dobArrInt[0], dobArrInt[1]);
-
-  const diffDays = Math.round(Math.abs((dobDate - deathDate) / oneDay));
-  CONTAINER.innerHTML = CONTAINER.innerHTML + `<h3>You have ${diffDays} days left to live!</h3>`;
+  const today = new Date();
+  const diffDays = Math.round(Math.abs((today - deathDate) / oneDay));
+  CONTAINER.innerHTML = CONTAINER.innerHTML + `<h3>You have ${numberWithCommas(diffDays)} days left to live!</h3>`;
 });
 
 
