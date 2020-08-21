@@ -2,12 +2,8 @@
   "name": "Days Until Death",
   "version": "1.0",
   "description": "Don't waste a day! Be reminded that each day is precious!",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  "page_action": {
+  "permissions": [],
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "128": "images/hourglass128.png"
