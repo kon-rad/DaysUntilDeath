@@ -18,11 +18,15 @@ button.addEventListener('click', event => {
     CONTAINER.innerHTML = CONTAINER.innerHTML + '<h3>Please enter correct Date of birht format dd/mm/yyy</h3>';
     return;
   }
-  chrome.storage.sync.set({ 'dob': dob}, function() {
+  chrome.storage.local.set({ dob: dob}, function() {
+    console.log('Value is set to ' + dob);
   });
 });
 
 const displayResult = dob => {
+  if (!dob) {
+    return;
+  }
   const dobArr = dob.split('/');
   const dobArrInt = dobArr.map(d => parseInt(d));
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -34,9 +38,13 @@ const displayResult = dob => {
 }
 
 window.onload = function() {
-  chrome.storage.sync.get(['dob'], function(result) {
-    alert('hi', result.key);
-    displayResult(result.key);
+
+  chrome.storage.local.get(['dob'], function(result) {
+    console.log('Value currently is ' + result.dob);
+    if (result.dob) {
+      alert('hi', result.dob);
+      displayResult(result.dob);
+    }
   });
 }
 
