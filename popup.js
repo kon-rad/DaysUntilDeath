@@ -2,24 +2,25 @@
 
 const getElemByID = id => document.getElementById(id);
 
-const button = getElemByID('dobSubmit');
 const CONTAINER = getElemByID('bodyContainer');
-const INPUT = getElemByID('dobInput');
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-button.addEventListener('click', event => {
+const onSubmitButton = event => {
+  const INPUT = getElemByID('dobInput');
   const dob = INPUT.value;
   const dobArr = dob.split('/');
+  console.log('dobarr', dobArr);
   if (dobArr.length !== 3) {
     CONTAINER.innerHTML = CONTAINER.innerHTML + '<h3>Please enter correct Date of birth format dd/mm/yyy</h3>';
     return;
   }
   chrome.storage.local.set({ dob: dob}, function() {
   });
-});
+  displayResult(dob);
+}
 
 const displayResult = dob => {
   if (!dob) {
@@ -36,12 +37,28 @@ const displayResult = dob => {
   CONTAINER.innerHTML = CONTAINER.innerHTML + `<div class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton">reset</a></p></div>`;
   const RESET_BUTTON = getElemByID('resetButton');
   RESET_BUTTON.addEventListener('click', () => {
-    alert('reset clicked!');
+    displayInput();
   })
+}
+
+const displayInput = () => {
+  CONTAINER.innerHTML = '<div class="labelContainer">'
+    + '<label class="dobLabel" for="dob">date of birth:</label>'
+    + '<input id="dobInput" type="text" name="dob" class="dobInput" placeholder="mm/dd/yyyy" />'
+    + '</div>'
+    + '<button id="dobSubmit" class="dobSubmit">Show</button>';
+    const button = getElemByID('dobSubmit');
+    button.addEventListener('click', onSubmitButton);
+}
+
+const initDisplayListeners =() => {
+  if (!button) return;
 }
 
 window.onload = function() {
 
+  displayInput();
+  // initDisplayListeners();
   chrome.storage.local.get(['dob'], function(result) {
     if (result.dob) {
       displayResult(result.dob);
