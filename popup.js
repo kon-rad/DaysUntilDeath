@@ -56,9 +56,7 @@ const initDisplayListeners =() => {
 }
 
 window.onload = function() {
-
   displayInput();
-  // initDisplayListeners();
   chrome.storage.local.get(['dob'], function(result) {
     if (result.dob) {
       displayResult(result.dob);
