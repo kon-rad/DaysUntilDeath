@@ -3,6 +3,7 @@
 const getElemByID = id => document.getElementById(id);
 
 const CONTAINER = getElemByID('bodyContainer');
+const MESSAGE_CONTAINER = getElemByID("messageContainer");
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -14,7 +15,7 @@ const onSubmitButton = event => {
   const dobArr = dob.split('/');
   console.log('dobarr', dobArr);
   if (dobArr.length !== 3) {
-    CONTAINER.innerHTML = CONTAINER.innerHTML + '<h3>Please enter correct Date of birth format dd/mm/yyy</h3>';
+    MESSAGE_CONTAINER.innerHTML = '<h3 class="errorMessage">Please enter correct Date of birth format dd/mm/yyy</h3>';
     return;
   }
   chrome.storage.local.set({ dob: dob}, function() {
@@ -34,7 +35,8 @@ const displayResult = dob => {
   const today = new Date();
   const diffDays = Math.round(Math.abs((today - deathDate) / oneDay));
   CONTAINER.innerHTML = '';
-  CONTAINER.innerHTML = CONTAINER.innerHTML + `<div class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton">reset</a></p></div>`;
+  MESSAGE_CONTAINER.innerHTML = '';
+  CONTAINER.innerHTML = CONTAINER.innerHTML + `<div class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton" class="resetButton">reset</a></p></div>`;
   const RESET_BUTTON = getElemByID('resetButton');
   RESET_BUTTON.addEventListener('click', () => {
     displayInput();
