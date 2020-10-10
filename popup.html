@@ -82,6 +82,29 @@
         color: red;
         font-size: 12px;
       }
+      .progressContainer {
+          width: 100%;
+          height: 100px;
+      }
+      .progressBar.show {
+        width: 280px;
+        height: 60px;
+        border: solid 3px gray;
+        margin: 20px auto 0;
+      }
+      .progressBarFull {
+        height: 100%;
+        border: 2px solid white;
+        background: gray;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .progressBarFullLabel {
+        font-size: 14px;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -90,6 +113,13 @@
         <div id="bodyContainer" class="bodyContainer">
         </div>
         <div id="messageContainer" class="messageContainer"></div>
+        <div id="progressContainer" class="progressContainer">
+          <div id="progressBar" class="progressBar">
+            <div id="progressBarFull" class="progressBarFull">
+              <span id="progressBarFullLabel" class="progressBarFullLabel"
+            </div>
+          </div>
+        </div>
     </div>
     <script src="popup.js"></script>
   </body>

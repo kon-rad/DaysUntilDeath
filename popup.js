@@ -4,6 +4,9 @@ const getElemByID = id => document.getElementById(id);
 
 const CONTAINER = getElemByID('bodyContainer');
 const MESSAGE_CONTAINER = getElemByID("messageContainer");
+const PROGRESS_BAR = getElemByID('progressBar');
+const PROGRESS_BAR_FULL = getElemByID('progressBarFull');
+const PROGRESS_BAR_FULL_LABEL = getElemByID('progressBarFullLabel');
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -34,6 +37,8 @@ const displayResult = dob => {
   const deathDate = new Date(dobArrInt[2] + 85, dobArrInt[0], dobArrInt[1]);
   const today = new Date();
   const diffDays = Math.round(Math.abs((today - deathDate) / oneDay));
+  const totalDays = Math.round(Math.abs((deathDate - dobDate) / oneDay));
+  const daysPassed = Math.round(Math.abs((today - dobDate) / oneDay));
   CONTAINER.innerHTML = '';
   MESSAGE_CONTAINER.innerHTML = '';
   CONTAINER.innerHTML = CONTAINER.innerHTML + `<div class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton" class="resetButton">reset</a></p></div>`;
@@ -41,6 +46,17 @@ const displayResult = dob => {
   RESET_BUTTON.addEventListener('click', () => {
     displayInput();
   })
+  showProgressBar(daysPassed, totalDays);
+}
+
+const showProgressBar = (daysPassed, totalDays) => {
+  PROGRESS_BAR.classList.add('show');
+  PROGRESS_BAR_FULL.style.width = `${daysPassed / totalDays * 100}%`;
+  PROGRESS_BAR_FULL_LABEL.textContent = numberWithCommas(daysPassed)
+}
+
+const hideProgressBar = () => {
+  PROGRESS_BAR.classList.remove('show');
 }
 
 const displayInput = () => {
@@ -51,6 +67,7 @@ const displayInput = () => {
     + '<button id="dobSubmit" class="dobSubmit">Show</button>';
     const button = getElemByID('dobSubmit');
     button.addEventListener('click', onSubmitButton);
+    hideProgressBar();
 }
 
 const initDisplayListeners =() => {
