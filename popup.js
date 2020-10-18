@@ -7,6 +7,10 @@ const MESSAGE_CONTAINER = getElemByID("messageContainer");
 const PROGRESS_BAR = getElemByID('progressBar');
 const PROGRESS_BAR_FULL = getElemByID('progressBarFull');
 const PROGRESS_BAR_FULL_LABEL = getElemByID('progressBarFullLabel');
+const PROGRESS_BAR_LABELS = getElemByID('progressBarLabels');
+const PROGRESS_BAR_LABEL_PASSED = getElemByID('daysPassedLabel');
+const PROGRESS_BAR_LABEL_REMAINING = getElemByID('daysRemainingLabel');
+const RESULT_CONTAINER = getElemByID('resultContainer');
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -41,7 +45,7 @@ const displayResult = dob => {
   const daysPassed = Math.round(Math.abs((today - dobDate) / oneDay));
   CONTAINER.innerHTML = '';
   MESSAGE_CONTAINER.innerHTML = '';
-  CONTAINER.innerHTML = CONTAINER.innerHTML + `<div class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton" class="resetButton">reset</a></p></div>`;
+  CONTAINER.innerHTML = CONTAINER.innerHTML + `<div id="resultContainer" class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton" class="resetButton">reset</a><br/>Life expectancy: 85 years.</p></div>`;
   const RESET_BUTTON = getElemByID('resetButton');
   RESET_BUTTON.addEventListener('click', () => {
     displayInput();
@@ -52,11 +56,14 @@ const displayResult = dob => {
 const showProgressBar = (daysPassed, totalDays) => {
   PROGRESS_BAR.classList.add('show');
   PROGRESS_BAR_FULL.style.width = `${daysPassed / totalDays * 100}%`;
-  PROGRESS_BAR_FULL_LABEL.textContent = numberWithCommas(daysPassed)
+  PROGRESS_BAR_LABEL_PASSED.textContent = `${numberWithCommas(daysPassed)} passed`;
+  PROGRESS_BAR_LABEL_REMAINING.textContent = `${numberWithCommas(totalDays - daysPassed)} remain`;
+  RESULT_CONTAINER.appendChild()
 }
 
 const hideProgressBar = () => {
   PROGRESS_BAR.classList.remove('show');
+  PROGRESS_BAR_LABELS
 }
 
 const displayInput = () => {

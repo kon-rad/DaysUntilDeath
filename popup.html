@@ -86,7 +86,11 @@
           width: 100%;
           height: 100px;
       }
+      .progressBar {
+        display: none;
+      }
       .progressBar.show {
+        display: block;
         width: 280px;
         height: 60px;
         border: solid 3px gray;
@@ -101,9 +105,11 @@
         align-items: center;
         justify-content: center;
       }
-      .progressBarFullLabel {
-        font-size: 14px;
-        color: white;
+      .progressBarLabels {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
       }
     </style>
   </head>
@@ -116,7 +122,11 @@
         <div id="progressContainer" class="progressContainer">
           <div id="progressBar" class="progressBar">
             <div id="progressBarFull" class="progressBarFull">
-              <span id="progressBarFullLabel" class="progressBarFullLabel"
+              <span id="progressBarFullLabel" class="progressBarFullLabel"/>
+            </div>
+            <div id="progressBarLabels" class="progressBarLabels">
+              <span id="daysPassedLabel" class="daysPassedLabel"></span>
+              <span id="daysRemainingLabel" class="daysRemainingLabel"></span>
             </div>
           </div>
         </div>
