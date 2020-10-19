@@ -45,6 +45,7 @@ const displayResult = dob => {
   const daysPassed = Math.round(Math.abs((today - dobDate) / oneDay));
   CONTAINER.innerHTML = '';
   MESSAGE_CONTAINER.innerHTML = '';
+  CONTAINER.classList.add('show');
   CONTAINER.innerHTML = CONTAINER.innerHTML + `<div id="resultContainer" class="resultContainer"><h3>You have ${numberWithCommas(diffDays)} days left to live!</h3><p>You were born on: ${dob}. <a id="resetButton" class="resetButton">reset</a><br/>Life expectancy: 85 years.</p></div>`;
   const RESET_BUTTON = getElemByID('resetButton');
   RESET_BUTTON.addEventListener('click', () => {
@@ -62,6 +63,7 @@ const showProgressBar = (daysPassed, totalDays) => {
 }
 
 const hideProgressBar = () => {
+  CONTAINER.classList.remove('show');
   PROGRESS_BAR.classList.remove('show');
   PROGRESS_BAR_LABELS
 }
