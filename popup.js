@@ -22,7 +22,7 @@ const onSubmitButton = event => {
   const INPUT = getElemByID('dobInput');
   const dob = INPUT.value;
   const dobArr = dob.split('/');
-  console.log('dobarr', dobArr);
+  MESSAGE_CONTAINER.innerHTML = '';
   if (dobArr.length !== 3) {
     MESSAGE_CONTAINER.innerHTML = '<h3 class="errorMessage">Please enter correct Date of birth format dd/mm/yyy</h3>';
     return;
@@ -36,7 +36,6 @@ const displayResult = dob => {
   if (!dob) {
     return;
   }
-  console.log('diplsayResult', dob);
   INPUT_CONTAINER.classList.remove('show');
   RESULT_CONTAINER.classList.add('show');
   const dobArr = dob.split('/');
@@ -68,7 +67,6 @@ const showProgressBar = (daysPassed, totalDays) => {
 const displayInput = () => {
   INPUT_CONTAINER.classList.add('show');
   RESULT_CONTAINER.classList.remove('show');
-  console.log('show displayInput');
   const button = getElemByID('dobSubmit');
   button.addEventListener('click', onSubmitButton);
 }
