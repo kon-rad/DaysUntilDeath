@@ -10,6 +10,8 @@ const PROGRESS_BAR_LABELS = getElemByID('progressBarLabels');
 const PROGRESS_BAR_LABEL_PASSED = getElemByID('daysPassedLabel');
 const PROGRESS_BAR_LABEL_REMAINING = getElemByID('daysRemainingLabel');
 const RESULT_CONTAINER = getElemByID('resultOuterContainer');
+const RESULT_TEXT = getElemByID('resultText');
+const RESULT_TEXT_DOB = getElemByID('resultTextDOB');
 const INPUT_CONTAINER = getElemByID('inputContainer');
 
 function numberWithCommas(x) {
@@ -34,7 +36,9 @@ const displayResult = dob => {
   if (!dob) {
     return;
   }
+  console.log('diplsayResult', dob);
   INPUT_CONTAINER.classList.remove('show');
+  RESULT_CONTAINER.classList.add('show');
   const dobArr = dob.split('/');
   const dobArrInt = dobArr.map(d => parseInt(d));
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -45,6 +49,9 @@ const displayResult = dob => {
   const totalDays = Math.round(Math.abs((deathDate - dobDate) / oneDay));
   const daysPassed = Math.round(Math.abs((today - dobDate) / oneDay));
   const RESET_BUTTON = getElemByID('resetButton');
+  const resultTextBody = `You have ${numberWithCommas(diffDays)} days left to live!`;
+  RESULT_TEXT.innerHTML = resultTextBody;
+  RESULT_TEXT_DOB.innerHTML = `${dob}`;
   RESET_BUTTON.addEventListener('click', () => {
     displayInput();
   })
@@ -52,23 +59,18 @@ const displayResult = dob => {
 }
 
 const showProgressBar = (daysPassed, totalDays) => {
-  PROGRESS_BAR.classList.add('show');
   PROGRESS_BAR_FULL.style.width = `${daysPassed / totalDays * 100}%`;
   PROGRESS_BAR_LABEL_PASSED.textContent = `${numberWithCommas(daysPassed)} passed`;
   PROGRESS_BAR_LABEL_REMAINING.textContent = `${numberWithCommas(totalDays - daysPassed)} remain`;
 }
 
-const hideProgressBar = () => {
-  PROGRESS_BAR.classList.remove('show');
-  PROGRESS_BAR_LABELS
-}
 
 const displayInput = () => {
   INPUT_CONTAINER.classList.add('show');
+  RESULT_CONTAINER.classList.remove('show');
   console.log('show displayInput');
   const button = getElemByID('dobSubmit');
   button.addEventListener('click', onSubmitButton);
-  hideProgressBar();
 }
 
 const initDisplayListeners =() => {
