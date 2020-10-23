@@ -21,15 +21,32 @@ function numberWithCommas(x) {
 const onSubmitButton = event => {
   const INPUT = getElemByID('dobInput');
   const dob = INPUT.value;
-  const dobArr = dob.split('/');
   MESSAGE_CONTAINER.innerHTML = '';
-  if (dobArr.length !== 3) {
+  if (!isValid(dob)) {
     MESSAGE_CONTAINER.innerHTML = '<h3 class="errorMessage">Please enter correct Date of birth format dd/mm/yyy</h3>';
     return;
   }
-  chrome.storage.local.set({ dob: dob}, function() {
-  });
+  chrome.storage.local.set({ dob: dob}, function() {});
   displayResult(dob);
+}
+
+const isValid = dob => {
+  const dobArr = dob.split('/');
+  const dobArrInt = dobArr.map(d => parseInt(d));
+  console.log(((new Date()).getFullYear() - 3), dobArrInt);
+  console.log(dobArrInt[2] > ((new Date()).getFullYear() - 3));
+  if (
+    dobArr.length !== 3 ||
+    dobArrInt[0] < 1 ||
+    dobArrInt[0] > 12 ||
+    dobArrInt[1] < 1 ||
+    dobArrInt[1] > 31 ||
+    dobArrInt[2] < 1900 ||
+    dobArrInt[2] > ((new Date()).getFullYear() - 3)
+  ) {
+    return false;
+  }
+  return true;
 }
 
 const displayResult = dob => {
