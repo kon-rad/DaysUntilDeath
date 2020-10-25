@@ -3,10 +3,8 @@
 const getElemByID = id => document.getElementById(id);
 
 const MESSAGE_CONTAINER = getElemByID("messageContainer");
-const PROGRESS_BAR = getElemByID('progressBar');
 const PROGRESS_BAR_FULL = getElemByID('progressBarFull');
 const PROGRESS_BAR_FULL_LABEL = getElemByID('progressBarFullLabel');
-const PROGRESS_BAR_LABELS = getElemByID('progressBarLabels');
 const PROGRESS_BAR_LABEL_PASSED = getElemByID('daysPassedLabel');
 const PROGRESS_BAR_LABEL_REMAINING = getElemByID('daysRemainingLabel');
 const RESULT_CONTAINER = getElemByID('resultOuterContainer');
