@@ -1,7 +1,7 @@
 {
   "name": "Days Until Death",
   "version": "1.0",
-  "description": "Don't waste a day! Be reminded that each day is precious!",
+  "description": "Find out how many days you have left to live.",
   "permissions": [
     "storage"
   ],
